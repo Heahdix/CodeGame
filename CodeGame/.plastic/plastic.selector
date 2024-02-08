@@ -1,0 +1,4 @@
+repository "CodeGame@Heahdix@cloud"
+  path "/"
+    br "/main"
+    co "/main"

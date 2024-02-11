@@ -32,10 +32,10 @@ public class WeaponCommands : MonoBehaviour
             {
                 Type type = comp.GetType();
 
-                MethodInfo methodInfo = type.GetMethod(text[1], BindingFlags.NonPublic | BindingFlags.Instance);
+                MethodInfo methodInfo = type.GetMethod(text[1], BindingFlags.Public | BindingFlags.Instance);
                 if (methodInfo == null)
                 {
-                    Debug.Log("Такогно метода у оружия нет");
+                    Debug.Log("Такого метода у оружия нет");
                 }
                 else
                 {

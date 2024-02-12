@@ -10,6 +10,13 @@ public class DetectCollisions : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("hitting enemy");
+
+            // Damage dmg = new Damage()
+            // {
+            //     damageAmount = weaponData.damage;
+            //     pushForce = weaponData.pushbackStrength;
+            //     origin = transform.position;
+            // }
         }
     }
 }

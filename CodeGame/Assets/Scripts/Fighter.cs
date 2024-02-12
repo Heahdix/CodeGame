@@ -7,7 +7,6 @@ public class Fighter : MonoBehaviour
     public EnemyData enemyData;
 
     public int hitpoint;
-    public int maxHitpoint;
     //public float pushrecoverySpeed;
 
     //protected float immuneTime;
@@ -17,8 +16,7 @@ public class Fighter : MonoBehaviour
 
     public virtual void Awake()
     {
-        maxHitpoint = enemyData.maxHitpoint;
-        hitpoint = maxHitpoint;
+        hitpoint = enemyData.maxHitpoint;
     }
 
     protected virtual void RecieveDamage(Damage dmg)
@@ -26,17 +24,16 @@ public class Fighter : MonoBehaviour
         //if (Time.time - lastImmune > immuneTime)
         //{
         //    lastImmune = Time.time;
-        //    hitpoint -= dmg.damageAmount;
-        //    pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+        hitpoint -= dmg.damageAmount;
+        pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
 
         //    //GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.zero, 0.5f);
 
-        //    if (hitpoint <= 0)
-        //    {
-        //        hitpoint = 0;
-        //        Death();
-        //    }
-        //}
+        if (hitpoint <= 0)
+        {
+            hitpoint = 0;
+            Death();
+        }
     }
 
     protected virtual void Death()

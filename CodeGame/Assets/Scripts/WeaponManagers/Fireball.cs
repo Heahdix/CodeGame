@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : CommandExecutor
 {
-    public override void Attack()
+    public void Launch()
     {
         GameObject fireball = Instantiate(weaponPrefab, transform.position, weaponPrefab.transform.rotation);
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();

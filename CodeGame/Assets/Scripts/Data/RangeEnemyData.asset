@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd914402cd734b94b83bfdfa2a1dbab1, type: 3}
   m_Name: RangeEnemyData
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHitpoint: 20
-  pushRecoverySpeed: 1
+  pushRecoverySpeed: 2
   initialDamage: 5
-  pushbackStrength: 1
-  initialSpeed: 10
-  range: 50
+  pushbackStrength: 0
+  initialSpeed: 3
+  range: 40

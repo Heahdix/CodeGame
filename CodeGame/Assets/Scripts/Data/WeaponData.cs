@@ -16,16 +16,16 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
 
 
     [field: Tooltip("Initial damage of the weapon per hit")]
-    public float initialDamage;
+    public int initialDamage;
 
     [field: NonSerialized]
     [field: Tooltip("Damage of the weapon per hit")]
-    public float damage;
+    public int damage;
 
     [field: Tooltip("Pushback strength of the weapon")]
     public float pushbackStrength;
 
-    [field: Tooltip("Initial speed if weapon")]
+    [field: Tooltip("Initial attack speed if weapon")]
     public float initialSpeed;
 
     [field: NonSerialized]

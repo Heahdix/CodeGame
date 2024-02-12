@@ -7,4 +7,12 @@ public class CommandExecutor : MonoBehaviour
     public GameObject weaponPrefab;
     public WeaponData weaponData;
 
+    enum EnemyToAtack
+    {
+        closest,
+        farthest,
+        random,
+        withMostHp,
+        withLeastHp
+    }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Fighter : MonoBehaviour
 {
-    public EnemyData enemyData;
+    public FighterData fighterData;
 
-    public int hitpoint;
+    protected int hitpoint;
     //public float pushrecoverySpeed;
 
     //protected float immuneTime;
@@ -16,7 +16,7 @@ public class Fighter : MonoBehaviour
 
     public virtual void Awake()
     {
-        hitpoint = enemyData.maxHitpoint;
+        hitpoint = fighterData.maxHitpoint;
     }
 
     protected virtual void RecieveDamage(Damage dmg)

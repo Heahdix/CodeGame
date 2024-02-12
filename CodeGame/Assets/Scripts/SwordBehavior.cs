@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class SwordBehavior : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
+
+    private void OnEnable()
+    {
+        anim.SetTrigger("Attack");
+    }
+
+    public void DisableElement()
+    {
+        gameObject.SetActive(false);
+    }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab04177dfee159542a4260c6bd28b8ba, type: 3}
-  m_Name: SwordDara
+  m_Name: SwordData
   m_EditorClassIdentifier: 
   _sprite: {fileID: 0}
   initialDamage: 10

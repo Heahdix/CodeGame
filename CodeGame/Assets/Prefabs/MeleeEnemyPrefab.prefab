@@ -98,10 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1a2dea49c757e41a416fc624f0e037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: db4eb0f8fe09a15469d2add7bf4e6839, type: 2}
+  fighterData: {fileID: 11400000, guid: db4eb0f8fe09a15469d2add7bf4e6839, type: 2}
   hitpoint: 0
-  maxHitpoint: 0
-  pushRecoverySpeed: 0
 --- !u!61 &2807006083425017100
 BoxCollider2D:
   m_ObjectHideFlags: 0

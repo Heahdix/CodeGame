@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
@@ -9,7 +10,6 @@ public class DetectCollisions : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("hitting enemy");
 
             Damage dmg = new Damage
             {
@@ -19,6 +19,11 @@ public class DetectCollisions : MonoBehaviour
             };
 
             other.SendMessage("ReceiveDamage", dmg);
+
+            if (gameObject.CompareTag("Fireball"))
+            {
+                Destroy(gameObject);
+            }
         }
     
     }

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab04177dfee159542a4260c6bd28b8ba, type: 3}
   m_Name: FireballData
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2051563045503699103, guid: 3ddad541cd2c3fb4f9c5c992ce70d5bf, type: 3}
   _sprite: {fileID: 0}
   initialDamage: 10
-  pushbackStrenght: 1
+  pushbackStrength: 2
   initialSpeed: 10
   initialSize: 1
-  _coef: 0.25
+  _coef: 1.2

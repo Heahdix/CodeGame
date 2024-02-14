@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 711751442519680326}
   - component: {fileID: 8765304524859016740}
   - component: {fileID: 2807006083425017100}
+  - component: {fileID: 4572740745697817390}
   m_Layer: 0
   m_Name: MeleeEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fighterData: {fileID: 11400000, guid: db4eb0f8fe09a15469d2add7bf4e6839, type: 2}
-  hitpoint: 0
 --- !u!61 &2807006083425017100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,3 +126,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &4572740745697817390
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711751442519680325}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

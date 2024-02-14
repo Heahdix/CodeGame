@@ -41,10 +41,10 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
 
     [field: SerializeField]
     [field: Tooltip("Coef for RAM usage")]
-    protected float _coef;
+    private float _coef;
 
     [field: Tooltip("Value of RAM using per cast")]
-    protected float _ramUsage;
+    private float _ramUsage;
 
     //public GameObject Prefab => this._prefab;
     public Sprite Sprite => this._sprite;
@@ -67,6 +67,8 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
         damage = initialDamage;
         size = initialSize;
         speed = initialSpeed;
+
+        SetRamUsage();
     }
 
     public void OnBeforeSerialize()

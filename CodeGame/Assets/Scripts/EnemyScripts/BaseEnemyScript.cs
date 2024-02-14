@@ -5,21 +5,17 @@ using UnityEngine;
 
 public class BaseEnemyScript : Fighter
 {
-    public override void Awake()
+    public FighterData fighterData;
+
+    public override void Start()
     {
-        base.Awake();
+        base.Start();
+        hitpoint = fighterData.maxHitpoint;
     }
 
-    protected override void RecieveDamage(Damage dmg)
+    protected override void ReceiveDamage(Damage dmg)
     {
-        hitpoint -= dmg.damageAmount;
-        pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-
-        if (hitpoint <= 0)
-        {
-            hitpoint = 0;
-            Death();
-        }
+        base.ReceiveDamage(dmg);
     }
 
     protected override void Death()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Damage
 {
-    public Vector3 origin;
+    public Vector2 origin;
     public int damageAmount;
     public float pushForce;
 }

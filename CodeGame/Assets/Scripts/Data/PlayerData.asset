@@ -15,3 +15,5 @@ MonoBehaviour:
   maxHitpoint: 100
   maxMana: 100
   invulnerable: 1.5
+  dashTime: 0.125
+  dashSpeed: 25

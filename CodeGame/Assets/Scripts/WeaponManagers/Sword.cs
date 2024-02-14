@@ -13,7 +13,7 @@ public class Sword : CommandExecutor
         sword.SetActive(false);
         sword.transform.parent = transform;
     }
-    public void Swing()
+    private void Swing()
     {
         if (manaSystem.CanAffordSkill(weaponData.RamUsage))
         {

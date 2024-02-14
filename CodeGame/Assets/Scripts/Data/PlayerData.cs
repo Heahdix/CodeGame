@@ -13,4 +13,10 @@ public class PlayerData : ScriptableObject
 
     [field: Tooltip("Invulnerable time after hit")]
     public float invulnerable;
+
+    [field: Tooltip("Dash time")]
+    public float dashTime;
+
+    [field: Tooltip("Dash speed")]
+    public float dashSpeed;
 }

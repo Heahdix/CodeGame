@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : CommandExecutor
 {
-    public void Launch()
+    private void Launch()
     {
         if (manaSystem.CanAffordSkill(weaponData.RamUsage))
         {

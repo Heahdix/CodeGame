@@ -28,6 +28,7 @@ public class ManaSystem : MonoBehaviour
 
     public void SetMaxMana(float value)
     {
+        manaBar = GetComponent<Bar>();
         maxMana = value;
         manaBar.SetMaxValue(maxMana);
     }

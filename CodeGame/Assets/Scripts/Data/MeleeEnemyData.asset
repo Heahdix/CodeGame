@@ -15,6 +15,6 @@ MonoBehaviour:
   maxHitpoint: 20
   pushRecoverySpeed: 1
   initialDamage: 5
-  pushbackStrength: 1
+  pushbackStrength: 4
   initialSpeed: 5
-  range: 2
+  range: 1

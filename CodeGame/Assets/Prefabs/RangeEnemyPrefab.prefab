@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0ac5806d985af4286509aeaeaa0599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterData: {fileID: 11400000, guid: 88959d55b694c4b4a93be3e8d557362b, type: 2}
+  enemyData: {fileID: 11400000, guid: 88959d55b694c4b4a93be3e8d557362b, type: 2}
 --- !u!61 &2536026534655626766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,4 +146,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

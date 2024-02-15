@@ -57,7 +57,15 @@ public class Player : Fighter
             //rb.AddForce(pushDirection, ForceMode2D.Impulse);
             base.ReceiveDamage(dmg);
 
+            healthBar.SetValue(hitpoint);
+
             StartCoroutine(Invulnerable());
+        }
+        else
+        {
+            dmg.damageAmount = 0;
+
+            base.ReceiveDamage(dmg);
         }
     }
     

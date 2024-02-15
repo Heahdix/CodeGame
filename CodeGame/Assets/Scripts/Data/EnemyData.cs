@@ -5,7 +5,7 @@ using System.Drawing;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable objects/Fighter object", fileName = "New fighter object")]
-public class FighterData : ScriptableObject, ISerializationCallbackReceiver
+public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
 {
     [field: Tooltip("Max hitpoints of the enemy")]
     public int maxHitpoint;

@@ -1,39 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable objects/Weapon object", fileName = "New weapon object")]
 public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
 {
-    //[field: SerializeField]
-    //[Tooltip("Prefab of weapon")]
-    //private GameObject _prefab;
-
     [field: SerializeField]
-    [field: Tooltip("Sprite for weapon")]
-    public Sprite _sprite;
-
-
     [field: Tooltip("Initial damage of the weapon per hit")]
-    public int initialDamage;
+    private int _initialDamage;
 
     [field: NonSerialized]
     [field: Tooltip("Damage of the weapon per hit")]
     public int damage;
 
+    [field: SerializeField]
+    [field: Tooltip("Pushback strength of the weapon")]
+    private float _initialPushbackStrength;
+
+    [field: NonSerialized]
     [field: Tooltip("Pushback strength of the weapon")]
     public float pushbackStrength;
 
+    [field: SerializeField]
     [field: Tooltip("Initial attack speed if weapon")]
-    public float initialSpeed;
+    private float _initialSpeed;
 
     [field: NonSerialized]
     [field: Tooltip("Initial speed if weapon")]
     public float speed;
 
+    [field: SerializeField]
     [field: Tooltip("Initial size of the progectile/melee attack")]
-    public float initialSize;
+    private float _initialSize;
 
     [field: NonSerialized]
     [field: Tooltip("Size of the progectile/melee attack")]
@@ -46,16 +46,7 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
     [field: Tooltip("Value of RAM using per cast")]
     private float _ramUsage;
 
-    //public GameObject Prefab => this._prefab;
-    public Sprite Sprite => this._sprite;
     public float RamUsage => this._ramUsage;
-
-    public enum TargetValue
-    {
-        Closest,
-        Farthest,
-        WithMostHP
-    }
 
     public virtual void SetRamUsage()
     {
@@ -64,9 +55,10 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        damage = initialDamage;
-        size = initialSize;
-        speed = initialSpeed;
+        damage = _initialDamage;
+        pushbackStrength = _initialPushbackStrength;
+        size = _initialSize;
+        speed = _initialSpeed;
 
         SetRamUsage();
     }

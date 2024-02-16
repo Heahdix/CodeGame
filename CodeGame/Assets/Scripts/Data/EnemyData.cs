@@ -13,8 +13,9 @@ public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
     [field: Tooltip("Push recovery speed")]
     public float pushRecoverySpeed;
 
+    [field: SerializeField]
     [field: Tooltip("Initial damage of the enemy per hit")]
-    public int initialDamage;
+    private int initialDamage;
 
     [field: NonSerialized]
     [field: Tooltip("Damage of the enemy per hit")]
@@ -23,10 +24,6 @@ public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
     [field: Tooltip("Pushback strength of the enemy")]
     public float pushbackStrength;
 
-    [field: Tooltip("Initial speed of enemy")]
-    public float initialSpeed;
-
-    [field: NonSerialized]
     [field: Tooltip("Speed of enemy")]
     public float speed;
 
@@ -36,7 +33,6 @@ public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
     public void OnAfterDeserialize()
     {
         damage = initialDamage;
-        speed = initialSpeed;
     }
 
     public void OnBeforeSerialize()

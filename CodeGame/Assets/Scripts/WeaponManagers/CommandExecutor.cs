@@ -8,7 +8,7 @@ public class CommandExecutor : MonoBehaviour
     public WeaponData weaponData;
     public ManaSystem manaSystem;
 
-    enum EnemyToAtack
+    public enum EnemyToAttack
     {
         closest,
         farthest,

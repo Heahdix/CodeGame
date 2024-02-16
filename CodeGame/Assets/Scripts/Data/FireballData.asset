@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab04177dfee159542a4260c6bd28b8ba, type: 3}
   m_Name: FireballData
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
-  initialDamage: 10
-  pushbackStrength: 2
-  initialSpeed: 10
-  initialSize: 1
+  _initialDamage: 10
+  _initialPushbackStrength: 2
+  _initialSpeed: 1
+  _initialSize: 1
   _coef: 1.2

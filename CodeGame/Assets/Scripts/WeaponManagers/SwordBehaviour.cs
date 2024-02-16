@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordBehavior : MonoBehaviour
+public class SwordBehaviour : MonoBehaviour
 {
     public Animator anim;
-    private BoxCollider2D coll;
+
+    private BoxCollider2D _coll;
 
     private void Awake()
     {
-        coll = gameObject.GetComponentInChildren<BoxCollider2D>();
-        coll.enabled = false;
+        _coll = gameObject.GetComponentInChildren<BoxCollider2D>();
+        _coll.enabled = false;
     }
 
     private void OnEnable()
     {
         anim.SetTrigger("Attack");
-        coll.enabled = true;
+        _coll.enabled = true;
     }
 
     public void DisableElement()
     {
         gameObject.SetActive(false);
-        coll.enabled = false;
+        _coll.enabled = false;
     }
 }

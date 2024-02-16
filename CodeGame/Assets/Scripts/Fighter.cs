@@ -12,9 +12,6 @@ public class Fighter : MonoBehaviour
     //protected float immuneTime;
     //protected float lastImmune;
 
-    protected Vector3 pushDirection;
-
-
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +24,7 @@ public class Fighter : MonoBehaviour
         Vector2 currentPostition;
         currentPostition.x = transform.position.x;
         currentPostition.y = transform.position.y;
-        pushDirection = (currentPostition - dmg.origin).normalized * dmg.pushForce;
+        Vector3 pushDirection = (currentPostition - dmg.origin).normalized * dmg.pushForce;
 
         if (hitpoint <= 0)
         {

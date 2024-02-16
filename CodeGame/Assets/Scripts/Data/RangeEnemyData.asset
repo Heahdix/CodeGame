@@ -16,5 +16,5 @@ MonoBehaviour:
   pushRecoverySpeed: 1
   initialDamage: 5
   pushbackStrength: 0
-  initialSpeed: 3
+  speed: 3
   range: 40

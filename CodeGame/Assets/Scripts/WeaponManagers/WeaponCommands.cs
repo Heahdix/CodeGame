@@ -12,11 +12,11 @@ public class WeaponCommands : MonoBehaviour
     public TMP_InputField InputField;
     public GameObject weaponManager;
 
-    private GameObject _player;
+    private Player _player;
 
     void Start()
     {
-        _player = GameObject.Find("Player");
+        _player = GameObject.Find("Player").GetComponent<Player>();
         //weaponManager = player.GetComponentInChildren<WeaponManager>();
     }
     void Update()
@@ -28,8 +28,7 @@ public class WeaponCommands : MonoBehaviour
 
             if (text[0].Equals("Player"))
             {
-                Player playerScript = _player.GetComponent<Player>();
-                Type type = playerScript.GetType();
+                Type type = _player.GetType();
 
                 MethodInfo methodInfo = type.GetMethod(text[1], BindingFlags.NonPublic | BindingFlags.Instance);
                 if (methodInfo == null)
@@ -42,7 +41,7 @@ public class WeaponCommands : MonoBehaviour
                     string parameter = text[2];
                     try
                     {
-                        methodInfo.Invoke(playerScript, new[] { parameter });
+                        methodInfo.Invoke(_player, new[] { parameter });
                     }
                     catch
                     {

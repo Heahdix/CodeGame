@@ -5,33 +5,40 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float slowMotionTime = 1f;
+    public float slowMotionTime = 2f;
     public TMP_InputField InputField;
 
     private float residualTime;
     private bool timeSlowed = false;
+    private bool fullTimeUsed = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         residualTime = slowMotionTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (InputField.text != "" && residualTime >= slowMotionTime)
+        if (!timeSlowed)
         {
-            StartCoroutine(SlowMotion()); 
-        }
-        else if (!timeSlowed)
-        {
-            if (residualTime < slowMotionTime)
+            if (InputField.text != "" && !fullTimeUsed)
             {
-                residualTime += Time.deltaTime * 0.25f;
-                Debug.Log(residualTime);
+                StartCoroutine(SlowMotion());
+            }
+            else
+            {
+                if (residualTime < slowMotionTime)
+                {
+                    residualTime += Time.deltaTime * 0.25f;
+                }                
+                else
+                {
+                    fullTimeUsed = false;
+                }
+
             }
         }
+        
     }
 
     IEnumerator SlowMotion()
@@ -44,6 +51,11 @@ public class GameManager : MonoBehaviour
         {
             residualTime -= Time.deltaTime * 1/0.3f;
             yield return null;
+        }
+
+        if (residualTime <= 0)
+        {
+            fullTimeUsed = true;
         }
         timeSlowed = false;
         SetNormalTime();

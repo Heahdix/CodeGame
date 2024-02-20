@@ -14,6 +14,12 @@ public class WeaponCommands : MonoBehaviour
 
     private Player _player;
 
+    private void Awake()
+    {
+        InputField.Select();
+        InputField.ActivateInputField();
+    }
+
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -25,6 +31,9 @@ public class WeaponCommands : MonoBehaviour
         {
             string[] text = InputField.text.Split('.', '(', ')', ';', ',');
             //Debug.Log(weaponManager.name);
+            InputField.text = "";
+            InputField.Select();
+            InputField.ActivateInputField();
 
             if (text[0].Equals("Player"))
             {

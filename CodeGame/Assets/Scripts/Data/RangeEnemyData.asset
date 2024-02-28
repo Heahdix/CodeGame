@@ -17,4 +17,4 @@ MonoBehaviour:
   _initialDamage: 10
   pushbackStrength: 0
   speed: 3
-  range: 10
+  range: 7

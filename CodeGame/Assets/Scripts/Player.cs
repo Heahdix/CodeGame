@@ -9,8 +9,8 @@ public class Player : Fighter
     public Bar healthBar;
     public ManaSystem manaSystem;
 
-    private bool isInvulnerable = false;
-    private float currentDashTime = 0f;
+    private bool _isInvulnerable = false;
+    private float _currentDashTime = 0f;
 
     public override void Start()
     {
@@ -20,41 +20,14 @@ public class Player : Fighter
         manaSystem.SetMaxMana(playerData.maxMana);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            Damage dmg = new Damage
-            {
-                damageAmount = 20,
-                pushForce = 1,
-                origin = transform.position
-            };
-            ReceiveDamage(dmg);
-        }
     }
 
     protected override void ReceiveDamage(Damage dmg)
     {
-        if (!isInvulnerable)
+        if (!_isInvulnerable)
         {
-            //hitpoint -= dmg.damageAmount;
-
-            //healthBar.SetValue(hitpoint);
-
-            //Vector2 currentPostition;
-            //currentPostition.x = transform.position.x;
-            //currentPostition.y = transform.position.y;
-            //pushDirection = (currentPostition - dmg.origin).normalized * dmg.pushForce;
-
-            //if (hitpoint <= 0)
-            //{
-            //    hitpoint = 0;
-            //    Death();
-            //}
-
-            //rb.AddForce(pushDirection, ForceMode2D.Impulse);
             base.ReceiveDamage(dmg);
 
             healthBar.SetValue(hitpoint);
@@ -71,14 +44,14 @@ public class Player : Fighter
     
     IEnumerator Invulnerable()
     {
-        isInvulnerable = true;
+        _isInvulnerable = true;
         float timer = 0;
         while (timer < playerData.invulnerable)
         {
             yield return null;
             timer += Time.deltaTime;
         }
-        isInvulnerable = false;
+        _isInvulnerable = false;
     }
 
     private void Dash(string direction)
@@ -114,11 +87,11 @@ public class Player : Fighter
 
     IEnumerator Dashing(Vector2 direction)
     {
-        currentDashTime = playerData.dashTime;
+        _currentDashTime = playerData.dashTime;
 
-        while (currentDashTime > 0)
+        while (_currentDashTime > 0)
         {
-            currentDashTime -= Time.deltaTime;
+            _currentDashTime -= Time.deltaTime;
 
             direction.Normalize();
 
@@ -129,10 +102,4 @@ public class Player : Fighter
 
         rb.velocity = Vector2.zero;
     }
-
-    protected override void Death()
-    {
-        Destroy(gameObject);
-    }
-
 }

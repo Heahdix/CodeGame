@@ -48,7 +48,7 @@ public class WeaponData : ScriptableObject, ISerializationCallbackReceiver
 
     public float RamUsage => this._ramUsage;
 
-    public virtual void SetRamUsage()
+    private void SetRamUsage()
     {
         _ramUsage = damage * size * _coef;
     }

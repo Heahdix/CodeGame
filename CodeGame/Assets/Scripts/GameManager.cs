@@ -6,34 +6,34 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float slowMotionTime = 2f;
-    public TMP_InputField InputField;
+    public TMP_InputField inputField;
 
-    private float residualTime;
-    private bool timeSlowed = false;
-    private bool fullTimeUsed = false;
+    private float _residualTime;
+    private bool _timeSlowed = false;
+    private bool _fullTimeUsed = false;
 
     void Start()
     {
-        residualTime = slowMotionTime;
+        _residualTime = slowMotionTime;
     }
 
     void Update()
     {
-        if (!timeSlowed)
+        if (!_timeSlowed)
         {
-            if (InputField.text != "" && !fullTimeUsed)
+            if (inputField.text != "" && !_fullTimeUsed)
             {
                 StartCoroutine(SlowMotion());
             }
             else
             {
-                if (residualTime < slowMotionTime)
+                if (_residualTime < slowMotionTime)
                 {
-                    residualTime += Time.deltaTime * 0.25f;
+                    _residualTime += Time.deltaTime * 0.25f;
                 }                
                 else
                 {
-                    fullTimeUsed = false;
+                    _fullTimeUsed = false;
                 }
 
             }
@@ -45,19 +45,18 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.3f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        float startTime = Time.time;
-        timeSlowed = true;
-        while (InputField.text != "" && residualTime >= 0)
+        _timeSlowed = true;
+        while (inputField.text != "" && _residualTime >= 0)
         {
-            residualTime -= Time.deltaTime * 1/0.3f;
+            _residualTime -= Time.deltaTime * 1/0.3f;
             yield return null;
         }
 
-        if (residualTime <= 0)
+        if (_residualTime <= 0)
         {
-            fullTimeUsed = true;
+            _fullTimeUsed = true;
         }
-        timeSlowed = false;
+        _timeSlowed = false;
         SetNormalTime();
     }
 

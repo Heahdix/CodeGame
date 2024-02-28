@@ -8,12 +8,26 @@ public class Fireball : CommandExecutor
     {
         if (manaSystem.CanAffordSkill(weaponData.RamUsage))
         {
-            GameObject fireball = Instantiate(weaponPrefab, transform.position, weaponPrefab.transform.rotation);
-            Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+            var distance = Mathf.Infinity;
+            GameObject closestEnemy = null;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                float diff = Vector2.Distance(transform.position, enemy.transform.position);
+                if (diff < distance)
+                {
+                    closestEnemy = enemy;
+                }
+            }
+            if (closestEnemy != null)
+            {
+                GameObject fireball = Instantiate(weaponPrefab, transform.position, weaponPrefab.transform.rotation);
+                Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
 
-            rb.AddForce((GameObject.FindGameObjectsWithTag("Enemy")[0].transform.position - gameObject.transform.position) * weaponData.speed, ForceMode2D.Impulse);
+                rb.AddForce((closestEnemy.transform.position - gameObject.transform.position) * weaponData.speed, ForceMode2D.Impulse);
 
-            manaSystem.DecreaseMana(weaponData.RamUsage);
+                manaSystem.DecreaseMana(weaponData.RamUsage);
+            }
         }
     }
 }

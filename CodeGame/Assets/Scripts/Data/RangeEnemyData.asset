@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHitpoint: 20
   pushRecoverySpeed: 1
-  initialDamage: 5
+  _initialDamage: 10
   pushbackStrength: 0
   speed: 3
-  range: 40
+  range: 10

@@ -17,13 +17,28 @@ public class Sword : CommandExecutor
     {
         if (manaSystem.CanAffordSkill(weaponData.RamUsage))
         {
-            Vector3 Look = _sword.transform.InverseTransformPoint(GameObject.FindGameObjectsWithTag("Enemy")[0].transform.position);
-            float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg - 90;
+            var distance = Mathf.Infinity;
+            GameObject closestEnemy = null;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                float diff = Vector2.Distance(transform.position, enemy.transform.position);
+                if (diff < distance)
+                {
+                    closestEnemy = enemy;
+                }
+            }
+            if (closestEnemy != null)
+            {
+                Vector3 Look = _sword.transform.InverseTransformPoint(closestEnemy.transform.position);
+                float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg - 90;
 
-            _sword.transform.Rotate(0, 0, Angle);
+                _sword.transform.Rotate(0, 0, Angle);
 
-            _sword.SetActive(true);
-            manaSystem.DecreaseMana(weaponData.RamUsage);
+                _sword.SetActive(true);
+                manaSystem.DecreaseMana(weaponData.RamUsage);
+            }
+            
         }
     }
 }

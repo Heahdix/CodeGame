@@ -15,7 +15,7 @@ public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
 
     [field: SerializeField]
     [field: Tooltip("Initial damage of the enemy per hit")]
-    private int initialDamage;
+    private int _initialDamage;
 
     [field: NonSerialized]
     [field: Tooltip("Damage of the enemy per hit")]
@@ -32,7 +32,7 @@ public class EnemyData : ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        damage = initialDamage;
+        damage = _initialDamage;
     }
 
     public void OnBeforeSerialize()

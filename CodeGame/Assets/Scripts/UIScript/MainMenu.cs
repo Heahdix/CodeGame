@@ -10,8 +10,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("LevelScene");
     }
 
-
-
     public void QuitGame()
     {
         Application.Quit();

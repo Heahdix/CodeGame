@@ -12,14 +12,4 @@ public class BaseEnemyScript : Fighter
         base.Start();
         hitpoint = enemyData.maxHitpoint;
     }
-
-    protected override void ReceiveDamage(Damage dmg)
-    {
-        base.ReceiveDamage(dmg);
-    }
-
-    protected override void Death()
-    {
-        Destroy(gameObject);
-    }
 }

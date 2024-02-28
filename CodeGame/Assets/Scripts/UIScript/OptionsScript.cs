@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class OptionsScript : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;

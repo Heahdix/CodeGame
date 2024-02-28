@@ -6,8 +6,8 @@ public class ManaSystem : MonoBehaviour
 {
     public Bar manaBar;
 
-    private float currentMana;
-    private float maxMana;
+    private float _currentMana;
+    private float _maxMana;
 
     private void Start()
     {
@@ -16,32 +16,27 @@ public class ManaSystem : MonoBehaviour
 
     private void Update()
     {
-        if (currentMana < maxMana)
+        if (_currentMana < _maxMana)
         {
-            if (currentMana < maxMana)
-            {
-                currentMana = Mathf.MoveTowards(currentMana, maxMana, Time.deltaTime * 5f);
-                manaBar.SetValue(currentMana);
-            }
+            _currentMana = Mathf.MoveTowards(_currentMana, _maxMana, Time.deltaTime * 5f);
+            manaBar.SetValue(_currentMana);
         }
     }
 
     public void SetMaxMana(float value)
     {
         manaBar = GetComponent<Bar>();
-        maxMana = value;
-        manaBar.SetMaxValue(maxMana);
+        _maxMana = value;
+        manaBar.SetMaxValue(_maxMana);
     }
     public bool CanAffordSkill(float value)
     {
-        Debug.Log(currentMana);
-        Debug.Log(value);
-        return currentMana > value;
+        return _currentMana > value;
     }
 
     public void DecreaseMana(float value)
     {
-        currentMana -= value;
-        manaBar.SetValue(currentMana);
+        _currentMana -= value;
+        manaBar.SetValue(_currentMana);
     }
 }

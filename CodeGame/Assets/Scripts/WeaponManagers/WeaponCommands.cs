@@ -23,14 +23,12 @@ public class WeaponCommands : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-        //weaponManager = player.GetComponentInChildren<WeaponManager>();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             string[] text = InputField.text.Split('.', '(', ')', ';', ',');
-            //Debug.Log(weaponManager.name);
             InputField.text = "";
             InputField.Select();
             InputField.ActivateInputField();
@@ -46,7 +44,6 @@ public class WeaponCommands : MonoBehaviour
                 }
                 else if (text.Length >= 3)
                 {
-                    var subArray = text.Skip(2).ToArray();
                     string parameter = text[2];
                     try
                     {
@@ -77,7 +74,6 @@ public class WeaponCommands : MonoBehaviour
                 {
                     Debug.Log("Такого предмета нет в инвентаре");
                 }
-
                 else
                 {
                     Type type = comp.GetType();
@@ -87,28 +83,9 @@ public class WeaponCommands : MonoBehaviour
                     {
                         Debug.Log("Такого метода у оружия нет");
                     }
-                    //else if (text.Length >= 3)
-                    //{
-                    //    var subArray = text.Skip(2).ToArray();
-                    //    try
-                    //    {
-                    //        methodInfo.Invoke(comp, new[] { subArray });
-                    //    }
-                    //    catch
-                    //    {
-                    //        Debug.Log("Неверные параметры");
-                    //    }
-                    //}
                     else
                     {
-                        try
-                        {
-                            methodInfo.Invoke(comp, null);
-                        }
-                        catch
-                        {
-                            Debug.Log("Неверные параметры");
-                        }
+                        methodInfo.Invoke(comp, null);
                     }
                 }
             }

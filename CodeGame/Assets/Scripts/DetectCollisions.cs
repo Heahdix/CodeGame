@@ -8,7 +8,12 @@ public class DetectCollisions : MonoBehaviour
     public WeaponData weaponData;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+
+        }
+        else if (other.CompareTag("Enemy"))
         {
 
             Damage dmg = new Damage

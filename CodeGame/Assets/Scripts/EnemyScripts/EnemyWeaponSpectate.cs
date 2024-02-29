@@ -19,10 +19,13 @@ public class EnemyWeaponSpectate : MonoBehaviour
         {
             transform.position = owner.transform.position;
 
-            Vector3 Look = gameObject.transform.InverseTransformPoint(GameObject.Find("Player").transform.position);
+            Vector3 Look = gameObject.transform.InverseTransformPoint(_player.transform.position);
             float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg - 180;
 
-            gameObject.transform.Rotate(0, 0, Angle);
+            if (_player.transform.position.x < gameObject.transform.position.x)
+                gameObject.transform.Rotate(0, 0, Angle);
+            else
+                gameObject.transform.Rotate(0, 180, Angle);
         }
     }
 }

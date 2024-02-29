@@ -5,7 +5,7 @@ using UnityEngine;
 public class RangeEnemy : BaseEnemyScript
 {
     public GameObject bulletPrefab;
-    public float bulletSpeed = 1f;
+    public float bulletSpeed = 100f;
     public float shootSpeed = 1f;
     public GameObject bulletSpawnPoint;
 
@@ -30,10 +30,10 @@ public class RangeEnemy : BaseEnemyScript
             {
                 if (_canShoot)
                 {
-                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletPrefab.transform.rotation);
-                    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+                    //Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-                    rb.AddForce(_target.transform.position - bulletSpawnPoint.transform.position * bulletSpeed, ForceMode2D.Impulse);
+                    //rb.AddForce((_target.transform.position - bulletSpawnPoint.transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
 
                     StartCoroutine(ShootInterval());
                 }

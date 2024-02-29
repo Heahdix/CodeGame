@@ -20,27 +20,36 @@ public class RangeEnemy : BaseEnemyScript
 
     private void Update()
     {
-        if (_target != null)
+        if (_playerInTheRoom)
         {
-            if (Vector2.Distance(transform.position, _target.position) < enemyData.range * 0.3f)
+            if (_target != null)
             {
-                transform.position = Vector2.MoveTowards(transform.position, _target.position, -enemyData.speed * Time.deltaTime);
-            }
-            else if (Vector2.Distance(transform.position, _target.position) < enemyData.range)
-            {
-                if (_canShoot)
+                if (_target.transform.position.x < gameObject.transform.position.x)
                 {
-                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
-                    //Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-                    //rb.AddForce((_target.transform.position - bulletSpawnPoint.transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
-
-                    StartCoroutine(ShootInterval());
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
-            }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, _target.position, enemyData.speed * Time.deltaTime);
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180f, 0);
+                }
+
+                if (Vector2.Distance(transform.position, _target.position) < enemyData.range * 0.3f)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, _target.position, -enemyData.speed * Time.deltaTime);
+                }
+                else if (Vector2.Distance(transform.position, _target.position) < enemyData.range)
+                {
+                    if (_canShoot)
+                    {
+                        Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+
+                        StartCoroutine(ShootInterval());
+                    }
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, _target.position, enemyData.speed * Time.deltaTime);
+                }
             }
         }
     }

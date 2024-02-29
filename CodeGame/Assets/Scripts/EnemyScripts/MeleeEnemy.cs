@@ -19,17 +19,20 @@ public class MeleeEnemy : BaseEnemyScript
 
     private void Update()
     {
-        if (_target != null && !_isAttacking)
+        if (_playerInTheRoom)
         {
-            if (Vector2.Distance(transform.position, _target.position) < enemyData.range)
+            if (_target != null && !_isAttacking)
             {
-                _jumpPos = _target.position;
-                _isAttacking = true;
-                anim.SetTrigger("Attack");
-            }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, _target.position, enemyData.speed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, _target.position) < enemyData.range)
+                {
+                    _jumpPos = _target.position;
+                    _isAttacking = true;
+                    anim.SetTrigger("Attack");
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, _target.position, enemyData.speed * Time.deltaTime);
+                }
             }
         }
     }

@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5034755296519525030}
   - component: {fileID: 5034755296519525031}
+  - component: {fileID: 4776568090483925527}
   m_Layer: 0
   m_Name: RoomWith2HorizontalDoors
   m_TagString: Untagged
@@ -243,6 +244,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.795771, y: 6.359825}
   m_EdgeRadius: 0
+--- !u!114 &4776568090483925527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034755296519525029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6847431562aae4eb4ecbdc938186e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5034755295129644630
 PrefabInstance:
   m_ObjectHideFlags: 0

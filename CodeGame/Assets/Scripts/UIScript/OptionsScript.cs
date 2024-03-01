@@ -5,12 +5,31 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class OptionsScript : MonoBehaviour
+public class OptionsScript : MonoBehaviour, IDataPersistence
 {
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
 
+    Resolution currentResolution;
+    FullScreenMode fullScreenMode;
+
     Resolution[] resolutions;
+
+    public void LoadData(SettingsData data)
+    {
+        audioMixer.SetFloat("Volume", data.volume);
+        currentResolution.width = data.resolutionWidth;
+        currentResolution.height = data.resolutionHeight;
+        fullScreenMode = data.mode;
+    }
+
+    public void SaveData(ref SettingsData data)
+    {
+        audioMixer.GetFloat("Volume", out data.volume);
+        data.resolutionHeight = currentResolution.height;
+        data.resolutionWidth = currentResolution.width;
+        data.mode = fullScreenMode;
+    }
 
     private void Start()
     {
@@ -26,7 +45,7 @@ public class OptionsScript : MonoBehaviour
             string option = resolutions[i].width + "x" + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == currentResolution.width && resolutions[i].height == currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -36,16 +55,16 @@ public class OptionsScript : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        currentResolution = resolution;
     }
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
+        audioMixer.SetFloat(name: "Volume", volume);
     }
 
     public void SetResizeMode(int resizeIndex)
@@ -53,17 +72,22 @@ public class OptionsScript : MonoBehaviour
         switch (resizeIndex)
         {
             case 0:
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                Screen.fullScreenMode = fullScreenMode;
                 break;
             case 1:
-                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                fullScreenMode = FullScreenMode.MaximizedWindow;
+                Screen.fullScreenMode = fullScreenMode;
                 break;
             case 2:
-                Screen.fullScreenMode = FullScreenMode.Windowed;
+                fullScreenMode = FullScreenMode.Windowed;
+                Screen.fullScreenMode = fullScreenMode;
                 break;
         }
+    }
 
-        Debug.Log("Fullscreen is " + Screen.fullScreenMode);
-        Debug.Log(resizeIndex);
+    public void OnSaveButtonClicked()
+    {
+        DataPersistenceManager.instance.SaveGame();
     }
 }

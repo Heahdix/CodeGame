@@ -12,10 +12,12 @@ public class Room : MonoBehaviour
 
     private List<Collider2D> results = new List<Collider2D>();
     private Collider2D _collider2D;
+    private SlowMotionManager _gameManager;
 
     private void Start()
     {
         _collider2D = GetComponent<Collider2D>();
+        _gameManager = SlowMotionManager.instance;
     }
 
     private void Update()
@@ -23,11 +25,15 @@ public class Room : MonoBehaviour
         ContactFilter2D contactFilter = new ContactFilter2D();
         int elemCount = _collider2D.OverlapCollider(contactFilter.NoFilter(), results);
 
-        if (!results.Where(x=> x.CompareTag("Enemy")).Any())
+        if (!results.Where(x => x.CompareTag("Enemy")).Any())
         {
             foreach (GameObject door in doors)
             {
                 door.SetActive(false);
+            }
+            if(results.Where(x => x.CompareTag("Player")).Any())
+            {
+                _gameManager.isInBattle = false;
             }
         }
     }
@@ -36,11 +42,18 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            OnPlayerEntered?.Invoke();
-            mainCamera.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, mainCamera.transform.position.z);
-            foreach (GameObject door in doors)
+            mainCamera.GetComponent<CameraMover>().target = transform.position;
+
+            if (results.Where(x => x.CompareTag("Enemy")).Any())
             {
-                door.SetActive(true);
+                OnPlayerEntered?.Invoke();
+
+                foreach (GameObject door in doors)
+                {
+                    door.SetActive(true);
+                }
+
+                _gameManager.isInBattle = true;
             }
         }
     }

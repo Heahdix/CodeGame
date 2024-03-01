@@ -3,14 +3,30 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SlowMotionManager : MonoBehaviour
 {
     public float slowMotionTime = 2f;
     public TMP_InputField inputField;
+    public bool isInBattle = false;
 
     private float _residualTime;
     private bool _timeSlowed = false;
     private bool _fullTimeUsed = false;
+
+    public static SlowMotionManager instance { get; private set; }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

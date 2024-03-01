@@ -15,6 +15,7 @@ public class WeaponCommands : MonoBehaviour
 
     private Player _player;
     private string _regex = @"(\.[\s\n\r]*[\w]+)[\s\n\r]*(?=\(.*\))";
+    private SlowMotionManager _gameManager;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class WeaponCommands : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         InputField.Select();
         InputField.ActivateInputField();
+        _gameManager = SlowMotionManager.instance;
     }
     void Update()
     {
@@ -67,7 +69,7 @@ public class WeaponCommands : MonoBehaviour
                             }
                             catch
                             {
-                                Debug.Log("Неверные параметры");
+                                Debug.Log(message: "Неверные параметры");
                             }
                         }
                     }
@@ -79,7 +81,7 @@ public class WeaponCommands : MonoBehaviour
                         {
                             Debug.Log("Такого предмета нет в инвентаре");
                         }
-                        else
+                        else if (_gameManager.isInBattle)
                         {
                             Type type = comp.GetType();
 
@@ -92,6 +94,10 @@ public class WeaponCommands : MonoBehaviour
                             {
                                 methodInfo.Invoke(comp, null);
                             }
+                        }
+                        else
+                        {
+                            Debug.Log(message: "Сейчас не идёт бой");
                         }
                     }
                 }

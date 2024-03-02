@@ -9,6 +9,8 @@ public class OptionsScript : MonoBehaviour, IDataPersistence
 {
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
+    public Slider slider;
+    public TMP_Dropdown resizeDropdown;
 
     Resolution currentResolution;
     FullScreenMode fullScreenMode;
@@ -33,6 +35,9 @@ public class OptionsScript : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        DataPersistenceManager.instance.FindAllDataPersistenceObjects();
+        DataPersistenceManager.instance.LoadGame();
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -54,6 +59,24 @@ public class OptionsScript : MonoBehaviour, IDataPersistence
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        float volume = 0;
+        audioMixer.GetFloat("Volume", out volume);
+        slider.value = volume;
+
+        switch (fullScreenMode)
+        {
+            case FullScreenMode.ExclusiveFullScreen:
+                resizeDropdown.value = 0;
+                break;
+            case FullScreenMode.MaximizedWindow:
+                resizeDropdown.value = 1;
+                break;
+            case FullScreenMode.Windowed:
+                resizeDropdown.value = 2;
+                break;
+        }
+        resizeDropdown.RefreshShownValue();
     }
     public void SetResolution(int resolutionIndex)
     {

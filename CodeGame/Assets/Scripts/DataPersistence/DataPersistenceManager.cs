@@ -30,7 +30,7 @@ public class DataPersistenceManager : MonoBehaviour
     private void Start()
     {
         this._fileDataHandler = new FileDataHandler(Application.persistentDataPath, _filename);
-        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
+        FindAllDataPersistenceObjects();
         LoadGame();
     }
 
@@ -65,10 +65,10 @@ public class DataPersistenceManager : MonoBehaviour
         _fileDataHandler.Save(_settingsData);
     }
 
-    private List<IDataPersistence> FindAllDataPersistenceObjects()
+    public void FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> _dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()
             .OfType<IDataPersistence>();
-        return new List<IDataPersistence> (_dataPersistenceObjects);
+        _dataPersistenceObjects = new List<IDataPersistence> (dataPersistenceObjects);
     }
 }

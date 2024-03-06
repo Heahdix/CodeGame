@@ -6,10 +6,11 @@ public class RangeEnemy : BaseEnemyScript
 {
     public GameObject bulletPrefab;
     public float bulletSpeed = 100f;
-    public float shootSpeed = 1f;
+    public float shootSpeed = 5f;
     public GameObject bulletSpawnPoint;
 
     private Transform _target;
+
     private bool _canShoot = true;
 
     public override void Start()

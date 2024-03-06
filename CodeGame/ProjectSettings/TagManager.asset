@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Fireball
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI
+    uniqueID: 3737543147
+    locked: 0
   - name: Rifle
     uniqueID: 3634890887
     locked: 0

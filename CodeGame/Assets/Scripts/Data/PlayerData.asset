@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitpoint: 100
   maxMana: 100
-  invulnerable: 1.5
-  dashTime: 0.125
-  dashSpeed: 25
+  invulnerable: 2
+  dashTime: 0.15
+  dashSpeed: 20

@@ -12,12 +12,12 @@ public class Room : MonoBehaviour
 
     private List<Collider2D> results = new List<Collider2D>();
     private Collider2D _collider2D;
-    private SlowMotionManager _gameManager;
+    private GameManager _gameManager;
 
     private void Start()
     {
         _collider2D = GetComponent<Collider2D>();
-        _gameManager = SlowMotionManager.instance;
+        _gameManager = GameManager.instance;
     }
 
     private void Update()

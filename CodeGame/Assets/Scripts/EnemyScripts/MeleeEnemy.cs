@@ -9,7 +9,14 @@ public class MeleeEnemy : BaseEnemyScript
 
     private Transform _target;
     private Vector3 _jumpPos;
-    private bool _isAttacking = false;
+
+    private enum _State
+    {
+        Attacking,
+        Jumping,
+    }
+
+    private _State _state = _State.Attacking;
 
     public override void Start()
     {
@@ -21,12 +28,12 @@ public class MeleeEnemy : BaseEnemyScript
     {
         if (_playerInTheRoom)
         {
-            if (_target != null && !_isAttacking)
+            if (_target != null && _state == _State.Attacking)
             {
                 if (Vector2.Distance(transform.position, _target.position) < enemyData.range)
                 {
                     _jumpPos = _target.position;
-                    _isAttacking = true;
+                    _state = _State.Jumping;
                     anim.SetTrigger("Attack");
                 }
                 else
@@ -46,7 +53,20 @@ public class MeleeEnemy : BaseEnemyScript
 
     private void EndAttack()
     {
-        _isAttacking = false;
+        StartCoroutine(Resting());
+    }
+
+    IEnumerator Resting()
+    {
+        float curRestingTime = 0;
+
+        while (curRestingTime < 1.0f)
+        {
+            curRestingTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _state = _State.Attacking;
     }
 
     private void OnDrawGizmosSelected()
@@ -54,5 +74,4 @@ public class MeleeEnemy : BaseEnemyScript
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, enemyData.range);
     }
-
 }

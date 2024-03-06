@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd914402cd734b94b83bfdfa2a1dbab1, type: 3}
   m_Name: MeleeEnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHitpoint: 20
+  maxHitpoint: 10
   pushRecoverySpeed: 1
   _initialDamage: 20
   pushbackStrength: 4
-  speed: 5
+  speed: 3
   range: 1

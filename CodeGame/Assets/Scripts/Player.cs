@@ -8,9 +8,10 @@ public class Player : Fighter
     public PlayerData playerData;
     public Bar healthBar;
     public ManaSystem manaSystem;
+    public Animator animator;
 
     private bool _isInvulnerable = false;
-    private float _currentDashTime = 0f;
+    private GameManager _gameManager;
 
     public override void Start()
     {
@@ -18,10 +19,7 @@ public class Player : Fighter
         hitpoint = playerData.maxHitpoint;
         healthBar.SetMaxValue(hitpoint);
         manaSystem.SetMaxMana(playerData.maxMana);
-    }
-
-    void Update()
-    {
+        _gameManager = GameManager.instance;
     }
 
     protected override void ReceiveDamage(Damage dmg)
@@ -32,7 +30,15 @@ public class Player : Fighter
 
             healthBar.SetValue(hitpoint);
 
-            StartCoroutine(Invulnerable());
+            if (hitpoint <= 0)
+            {
+                _gameManager.GameOver();
+            }
+            else
+            {
+                StartCoroutine(Invulnerable());
+                animator.SetTrigger("GotHit");
+            }
         }
         else
         {
@@ -59,47 +65,34 @@ public class Player : Fighter
         switch (direction)
         {
             case "l":
-                StartCoroutine(Dashing(new Vector2 { x = -1, y = 0 }));
+               Dashing(new Vector2 { x = -1, y = 0 });
                 break;
             case "r":
-                StartCoroutine(Dashing(new Vector2 { x = 1, y = 0}));
+               Dashing(new Vector2 { x = 1, y = 0});
                 break;
             case "d":
-                StartCoroutine(Dashing(new Vector2 { x = 0, y = -1}));
+               Dashing(new Vector2 { x = 0, y = -1});
                 break;
             case "u":
-                StartCoroutine(Dashing(new Vector2 {  x = 0, y = 1 }));
+                Dashing(new Vector2 {  x = 0, y = 1 });
                 break;
             case "ul":
-                StartCoroutine(Dashing(new Vector2 { x = -1, y = 1 }));
+                Dashing(new Vector2 { x = -1, y = 1 });
                 break;
             case "ur":
-                StartCoroutine(Dashing(new Vector2 { x = 1, y = 1}));
+              Dashing(new Vector2 { x = 1, y = 1});
                 break;
             case "dl":
-                StartCoroutine(Dashing(new Vector2 { x = -1, y = -1 }));
+                Dashing(new Vector2 { x = -1, y = -1 });
                 break;
             case "dr":
-                StartCoroutine(Dashing(new Vector2 { x = 1, y = -1 }));
+                Dashing(new Vector2 { x = 1, y = -1 });
                 break;
         }
     }
 
-    IEnumerator Dashing(Vector2 direction)
+    void Dashing(Vector2 direction)
     {
-        _currentDashTime = playerData.dashTime;
-
-        while (_currentDashTime > 0)
-        {
-            _currentDashTime -= Time.deltaTime;
-
-            direction.Normalize();
-
-            rb.velocity = direction * playerData.dashSpeed;
-
-            yield return null;
-        }
-
-        rb.velocity = Vector2.zero;
+        rb.AddForce(direction * 5, ForceMode2D.Impulse);
     }
 }

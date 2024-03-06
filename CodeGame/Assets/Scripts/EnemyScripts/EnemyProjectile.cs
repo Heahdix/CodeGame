@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     public EnemyData enemyData;
-    public float bulletSpeed = 10f;
+    public float bulletSpeed = 1f;
     
     private Rigidbody2D rb;
 

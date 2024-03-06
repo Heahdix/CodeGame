@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Winning : MonoBehaviour
 {
+    private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.instance;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("MenuScene");
+        _gameManager.GameWin();
     }
 }
